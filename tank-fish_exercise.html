@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Processing.JS inside Webpages: Template</title> 
+</head>
+ <body>
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+        background(6, 122, 148);
+text("Click to put a fish in tank",20,20);
+var Red = color(240, 76, 17);
+var Blue = color(26, 19, 240);
+var Green = color(77, 230, 16);
+var Yellow = color(252, 240, 10);
+var Grey = color(166, 162, 161);
+var Cian = color(155, 242, 238);
+var Magent = color(240, 19, 214);
+var White = color(255, 255, 255);
+var i=0;
+
+
+ var draw = function(){
+     fill(187, 226, 240,90-i);
+    ellipse(random(0,400),random(0,400),15,15);
+    i++;
+        }; 
+noStroke();
+fill(232, 205, 151);
+rect(0,350,400,80);
+ellipse(260,350,400,80);
+fill(3, 56, 3);
+ellipse(240,390,80,20);
+ellipse(200,350,20,80);
+ellipse(395,350,20,80);
+ellipse(20,350,20,80);
+ellipse(160,390,80,20);
+//function to generate random color
+var randColor = function(){return color(random(0,255),random(0,255),random(0,255));};
+
+
+
+//Item 1
+var drawFish = function(centerX,centerY,bodyLength,bodyHeight,bodyColor,eyeColor,tailColor,eyeSize) {
+   
+    noStroke();
+    fill(tailColor);
+    var tailWidth = bodyLength/4;
+    var tailHeight = bodyHeight/2;
+    
+    triangle(centerX-bodyLength/2, centerY,
+             centerX-bodyLength/2-tailWidth, centerY-tailHeight,
+             centerX-bodyLength/2-tailWidth, centerY+tailHeight);
+    fill(bodyColor);
+      
+    // body
+    ellipse(centerX, centerY, bodyLength, bodyHeight);
+    // tail
+    
+    // eye
+    fill(eyeColor);
+    ellipse(centerX+bodyLength/4, centerY, eyeSize, eyeSize);
+
+};
+
+//Item 6
+var mouseClicked = function() {
+    drawFish(mouseX,mouseY,random(20,75),random(20,75),randColor(),randColor(),randColor(),random(5,20));
+};
+//Item 2
+ drawFish(85,341,77,54,White,Blue,Cian,20);
+//Item 3
+    drawFish(304,46,89,74,Red,White,Blue,30);
+    drawFish(165,150,50,50,Green,Grey,Magent,15);
+    drawFish(311,250,111,60,Blue,Yellow,Red,18);
+    drawFish(284,343,132,73,Yellow,Red,Green,40);
+    drawFish(330,155,111,30,Grey,Green,Yellow,9);
+    drawFish(115,249,84,76,Cian,Magent,Grey,27);
+    drawFish(88,68,55,89,Magent,Cian,White,29);
+   
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
